@@ -1,86 +1,113 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <link rel="icon" type="image/bmp" href="assets/img/favicon.png">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Helvetica' rel='stylesheet' type='text/css'>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Vikram Sreekanti</title>
-        <link rel="stylesheet" href="curtain/curtain.css">
-        <link rel="stylesheet" href="style.css">
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-       <script src="curtain/curtain.js"></script>
-    </head>
 
-    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="assets/js/typed.min.js"></script>
+        <script src="assets/js/menu.js"></script>
+
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/menu.css">
+        
         <script>
-            $(function () {
-                $('.curtains').curtain({
-                    scrollSpeed: 400
+            $(function(){
+                $(".title").typed({
+                    strings: ["Hi, I'm Vikram."], typeSpeed: 10
                 });
             });
         </script>
+
+        <title>Vikram Sreekanti</title>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-20415839-4', 'auto');
+                ga('send', 'pageview');
+        </script>
+    </head>
+
+    <body>
+        <nav id="c-menu--slide-right" class="c-menu c-menu--slide-right">
+            <button class="c-menu__close"></button>
+            <ul class="c-menu__items">
+                <li class="c-menu__item"><a href="#" class="c-menu__link"><i class="fa fa-home"></i></a></li>
+                <li class="c-menu__item"><a href="http://blog.vikrams.io" class="c-menu__link"><i class="fa fa-pencil"></i></a></li>
+                <li class="c-menu__item"><a href="research" class="c-menu__link"><i class="fa fa-book"></i></a></li>
+                <li class="c-menu__item"><a href="travel" class="c-menu__link"><i class="fa fa-plane"></i></a></li>
+                <li class="c-menu__item"><a href="cv.pdf" class="c-menu__link"><i class="fa fa-user"></i></a></li>
+            </ul>
+        </nav>
+
+        <div class="menu-icon"> 
+            <a href="#"><i id="c-button--slide-right" class="c-button fa fa-bars"></i></button></a>
+        </div>
+
+        <div class="main">
+            <span class="title"></span>
+
+            <p>
+                I'm a first year Ph.D. student in the <a href="http://amplab.cs.berkeley.edu">AMP Lab</a> at <a href="http;//berkeley.edu">U.C. Berkeley</a> 
+                working with Professor <a href="http://db.cs.berkeley.edu/jmh/">Joe Hellerstein</a>.
+                In general, I'm interested in databases, data systems, and distributed systems. My current work focuses on data context services.
+                Check out what we're working on <a href="http://www.ground-context.org">here</a> and <a href="http://github.com/ground-context">here</a>.
+            </p>
+
+            <p>
+                I graduated from U.C. Berkeley with a B.S. in <a href="http://eecs.berkeley.edu">EECS</a> in May 2015. I've TA'd for Berkeley's undergraduate 
+                database systems course twice. You can find my resources <a href="https://github.com/vsreekanti/cs186">here</a>.
+            </p>
+
+            <p>
+                I occassionally <a href="http://blog.vikram.io">write about things that I'm interested in</a>.
+            </p>
+
+            <p>
+                In my free time, I <a href="http://goodreads.com/vikrams">read a lot</a>, watch soccer, football, and basketball, <a href="http://twitter.com/vsreekanti">complain about politics</a>, 
+                learn new languages, try to <a href="travel">travel</a>, and hack on random things. Other things I'm interested in or enjoy doing (in no particular order): Constitutional law, 
+                <a href="http://www.untappd.com/user/vikrams">beer</a>, productivity apps (e.g., to-do lists; my latest attempt is the
+                <a href="http://bulletjournal.com/">Bullet Journal</a>), sarcasm, existential philosophy, playing guitar, <a href="http://spotify.com/user/viksree">lots of different kinds of music </a>, 
+                Star Wars, Star Trek, driving stick shift, trying new food, running, watching TV.
+            </p>
+
+            <p>
+                Feel free to shoot me an email or tweet at me to get in touch!
+            </p>
+        </div>
+
+        <div class="info">
+            <p>
+                <a href='mailto:vikrams@berkeley.edu'><i class='fa fa-envelope'></i></a>
+                <a href='http://facebook.com/vikram.sreekanti'><i class='fa fa-facebook'></i></a>
+                <a href='http://twitter.com/vsreekanti'><i class='fa fa-twitter'></i></a> 
+                <a href='http://github.com/vsreekanti'><i class='fa fa-github'></i></a> 
+                <a href='https://www.linkedin.com/in/vikramsreekanti'><i class='fa fa-linkedin'></i></a> 
+            </p> 
+        </div>
+        
+        <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+
+        <script>
+            var slideRight = new Menu({
+                wrapper: '.main',
+                type: 'slide-right',
+                menuOpenerClass: '.c-button',
+                maskId: '#c-mask'
+            });
+
+            var slideRightBtn = document.querySelector('#c-button--slide-right');
+
+            slideRightBtn.addEventListener('click', function(e) {
+                e.preventDefault;
+                slideRight.open();
+            });
+        </script>
     </body>
-    <ol class="curtains">
-        <li class="cover" id="main">
-            <h1 class="main">vikram sreekanti</h1>
-            <h2 class="main">I'm a software engineer at the <a
-                href="https://amplab.cs.berkeley.edu.">AMP Lab</a> at <a
-                href="https://berkeley.edu">U.C. Berkeley</a>.</h2>
-        </li>
-
-        <li class="cover" id="about">
-            <h1> about me </h1>
-
-            <img class="img-rounded" src="imgs/profile.jpg" />
-
-            <p>
-                I graduted from UC Berkeley in May 2015 with a degree in <a
-                href="https://eecs.berkeley.edu">EECS</a>. I'm currently
-                working as a software engineer in the AMP Lab with Professor
-                <a href="http://cs.berkley.edu/~jmh">Joe Hellerstein</a>, and I
-                am planning on applying to grad school. My research interests
-                include databases and systems. In the past I interned at <a
-                href="https://www.yammer.com">Yammer</a> and <a
-                href="https://wwww.cloudera.com">Cloudera</a> and also contributed
-                to the <a href="https://github.com/amplab/velox-modelserver">
-                Velox</a> project in the AMP Lab. <br/><br/>
-
-                I also enjoy teaching. As an undergrad, I TA'd for CS 186,
-                Berkeley's undergraduate introductory databases course --
-                once with Professor Hellerstein in Spring 2015, and once with
-                Professor <a href="http://www.cs.ox.ac.uk/dan.olteanu/">Dan
-                Olteanu</a> in Spring 2014. <br/><br/>
-
-                I am also a member of <a href="http://hkn.eecs.berkeley.edu">
-                Eta Kappa Nu</a>,the EECS Honors Society at Berkeley.
-
-                In my free time, I enjoy reading, watching soccer, playing
-                video games, and hacking on random things. <br/><br/>
-
-                This summer, I'm taking a trip to Europe with my friends
-                <a href="http://www.garrettf.com">Garrett</a> and <a
-                href="http://www.georgepearman.com">George</a>. Check out our
-                running blog <a
-                href="http://www.georgepearman.com/europe">here</a>!
-            </p>
-        </li>
-
-        <li class="cover" id="contact">
-            <h1>contact</h1>
-
-            <p>
-                You can email me vikrams at berkeley dot edu. <br/><br/>
-
-                You can also find me on 
-                <a href="https://www.facebook.com/vikram.sreekanti">Facebook</a>, 
-                <a href="https://www.linkedin.com/profile/view?id=209518132">LinkedIn</a>, 
-                <a href="https://www.twitter.com/viksree">Twitter</a>, or
-                <a href="https://www.github.com/viksree">Github</a>.
-            </p>
-        </li>
-
-        <!---
-            Also eventually add a projects page.
-        -->
-
-    </ol>
 </html>

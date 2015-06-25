@@ -1,0 +1,9 @@
+h1 {
+    font-size: inherit;
+    font-weight: bold;
+    color: #e65c00;
+}
+
+.indent {
+    margin-left: 20px;
+}

@@ -1,0 +1,86 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: white;
+    font-family: "Helvetica", sans-serif;
+}
+
+.main {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+.header {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    height: 30px;
+    
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+}
+
+a { 
+    color: #e65c00;
+    text-decoration: none;
+}
+
+.header a {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-decoration: none;
+    color: #262626;
+}
+
+.header a:hover {
+    color: #e65c00;
+}
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+.info {
+    color: #e65c00;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+
+.info a {
+    color: #e65c00;
+    padding: 5px;
+    font-size: 20px;
+    display: inline;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+    color: #e65c00;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}

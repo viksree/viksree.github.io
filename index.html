@@ -2,111 +2,104 @@
 <html lang="en">
     <head>
         <link rel="icon" type="image/bmp" href="assets/img/favicon.png">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Helvetica' rel='stylesheet' type='text/css'>
+        
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-        <script src="assets/js/typed.min.js"></script>
-        <script src="assets/js/menu.js"></script>
-
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/menu.css">
-        
-        <script>
-            $(function(){
-                $(".title").typed({
-                    strings: ["Hi, I'm Vikram."], typeSpeed: 10
-                });
-            });
-        </script>
-
         <title>Vikram Sreekanti</title>
-
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-20415839-4', 'auto');
-                ga('send', 'pageview');
-        </script>
     </head>
 
     <body>
-        <nav id="c-menu--slide-right" class="c-menu c-menu--slide-right">
-            <button class="c-menu__close"></button>
-            <ul class="c-menu__items">
-                <li class="c-menu__item"><a href="#" class="c-menu__link"><i class="fa fa-home"></i></a></li>
-                <li class="c-menu__item"><a href="http://blog.vikrams.io" class="c-menu__link"><i class="fa fa-pencil"></i></a></li>
-                <li class="c-menu__item"><a href="research" class="c-menu__link"><i class="fa fa-book"></i></a></li>
-                <li class="c-menu__item"><a href="travel" class="c-menu__link"><i class="fa fa-plane"></i></a></li>
-                <li class="c-menu__item"><a href="cv.pdf" class="c-menu__link"><i class="fa fa-user"></i></a></li>
-            </ul>
-        </nav>
-
-        <div class="menu-icon"> 
-            <a href="#"><i id="c-button--slide-right" class="c-button fa fa-bars"></i></button></a>
+        <div class="header">
+            <div class="title">
+              <h1> Vikram Sreekanti </h1>
+              <div class="info">
+                  <p>
+                      <a href='mailto:vikrams@berkeley.edu'><i class='fa fa-envelope'></i></a>
+                      <a href='https://blog.vikrams.io'><i class='fa fa-pencil'></i></a>
+                      <a href='http://facebook.com/vikram.sreekanti'><i class='fa fa-facebook'></i></a>
+                      <a href='http://twitter.com/vsreekanti'><i class='fa fa-twitter'></i></a> 
+                      <a href='http://github.com/vsreekanti'><i class='fa fa-github'></i></a> 
+                      <a href='https://www.linkedin.com/in/vikramsreekanti'><i class='fa fa-linkedin'></i></a> 
+                      <a href='cv.pdf'><i class='fa fa-file'></i></a> 
+                  </p> 
+              </div>
+            </div>
+            
+            <div class="header-photo">
+              <img src="assets/img/header.jpg" />
+            </div>
         </div>
 
         <div class="main">
-            <span class="title"></span>
+          <p>
+              I'm a third year Ph.D. student in the <a href="http://rise.cs.berkeley.edu">RISE Lab</a> at <a href="http;//berkeley.edu">U.C. Berkeley</a> 
+              working with Professor <a href="http://db.cs.berkeley.edu/jmh/">Joe Hellerstein</a>.
+              In general, I'm interested in databases, data systems, and distributed systems. 
+              My current work focuses on autoscaling cloud infrastructure and data context management.
+              Check out what we're working on <a
+                href="https://www.github.com/fluent-project/fluent">here</a>,
+              <a href="https://github.com/ucbrise/flor">here</a>, and <a href="http://github.com/ground-context">here</a>.
+          </p>
 
-            <p>
-                I'm a third year Ph.D. student in the <a href="http://rise.cs.berkeley.edu">RISE Lab</a> at <a href="http;//berkeley.edu">U.C. Berkeley</a> 
-                working with Professor <a href="http://db.cs.berkeley.edu/jmh/">Joe Hellerstein</a>.
-                In general, I'm interested in databases, data systems, and distributed systems. 
-                My current work focuses on cloud infrastructure and data context management.
-                Check out what we're working on <a href="https://www.github.com/fluent-project/fluent">here</a> and <a href="http://github.com/ground-context">here</a>.
-            </p>
+          <p>
+              I graduated from U.C. Berkeley with a B.S. in <a href="http://eecs.berkeley.edu">EECS</a> in May 2015. 
+          </p>
 
-            <p>
-                I graduated from U.C. Berkeley with a B.S. in <a href="http://eecs.berkeley.edu">EECS</a> in May 2015. 
-                <!---I've TA'd for Berkeley's undergraduate 
-                  database systems course three times. You can find my resources <a href="https://github.com/vsreekanti/cs186">here</a>. -->
-            </p>
+          <p>
+              I occassionally <a href="http://blog.vikrams.io">write about things</a>.
+          </p>
 
-            <p>
-                I occassionally <a href="http://blog.vikrams.io">write about things that I'm interested in</a>.
-            </p>
-
-            <p>
-                In my free time, I <a href="http://goodreads.com/vikrams">read a lot</a>, watch soccer, football, and basketball, <a href="http://twitter.com/vsreekanti">complain about politics</a>, 
-                learn new languages, try to <a href="travel">travel</a>, and hack on random things. 
-                Other things I'm interested in or enjoy doing (in no particular order): Constitutional law, 
-                <a href="http://www.untappd.com/user/vikrams">beer</a>, productivity apps,
-                sarcasm, existential philosophy, <a href="http://open.spotify.com/user/viksree">lots of different kinds of music </a>, 
-                Star Wars, Star Trek, driving stick shift.
-            </p>
+          <p>
+              In my free time, I <a href="http://goodreads.com/vikrams">read a lot</a>, watch soccer, football, and basketball, <a href="http://twitter.com/vsreekanti">complain about politics</a>, 
+              learn new languages, try to travel, and hack on random things. 
+              Other things I'm interested in or enjoy doing (in no particular order): Constitutional law, 
+              <a href="http://www.untappd.com/user/vikrams">beer</a>, productivity apps,
+               <a href="http://open.spotify.com/user/viksree">lots of different kinds of music</a>, Star Wars, Star Trek, driving stick shift.
+          </p>
         </div>
 
-        <div class="info">
-            <p>
-                <a href='mailto:vikrams@berkeley.edu'><i class='fa fa-envelope'></i></a>
-                <a href='http://facebook.com/vikram.sreekanti'><i class='fa fa-facebook'></i></a>
-                <a href='http://twitter.com/vsreekanti'><i class='fa fa-twitter'></i></a> 
-                <a href='http://github.com/vsreekanti'><i class='fa fa-github'></i></a> 
-                <a href='https://www.linkedin.com/in/vikramsreekanti'><i class='fa fa-linkedin'></i></a> 
-            </p> 
+        <div class="main">
+            <h2>Publications</h2>
+
+            <ul>
+                <li>
+                  <i>Serverless Computing: One Step Forward, Two Steps
+                    Back</i>.
+                    J.M. Hellerstein, J. Faleiro, J.E. Gonzalez, J.
+                    Schleier-Smith, <b>V. Sreekanti</b>, A. Tumanov, C. Wu.
+                    <i>CIDR</i> 2019. <i>To appear.</i>
+                </li>
+
+                <li>
+                  <a href="https://arxiv.org/abs/1809.00089"> 
+                    <i>Eliminating Boundaries in Cloud Storage with Anna</i></a>.
+                    C. Wu, <b>V. Sreekanti</b>, J.M. Hellerstein.
+                    <i>arXiv:1809.00089</i>. 2018.
+                </li>
+                
+                <li>
+                  <a href="papers/flor-cmi18.pdf"> 
+                    <i>Context: The Missing Piece in Model Lifecycle
+                      Management</i></a>.
+                    R. Garcia, <b>V. Sreekanti</b>, N. Yadwadkar, D. Crankshaw,
+                    J.E. Gonzalez, J.M. Hellerstein.
+                    <i>Common Model Infrastructure</i> at <i>KDD</i> 2018.
+                </li>
+
+                <li>
+                  <a href="papers/ground-cidr17.pdf"> 
+                    <i>Ground: A Data Context Service.</i></a>.
+                    J.M. Hellerstein, <b>V. Sreekanti</b>, J.E. Gonzalez, et
+                    al. <i>CIDR</i> 2017.
+                </li>
+                
+              </ul>
+            </ul>
         </div>
-        
-        <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
 
-        <script>
-            var slideRight = new Menu({
-                wrapper: '.main',
-                type: 'slide-right',
-                menuOpenerClass: '.c-button',
-                maskId: '#c-mask'
-            });
-
-            var slideRightBtn = document.querySelector('#c-button--slide-right');
-
-            slideRightBtn.addEventListener('click', function(e) {
-                e.preventDefault;
-                slideRight.open();
-            });
-        </script>
     </body>
 </html>

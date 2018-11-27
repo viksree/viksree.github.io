@@ -2,26 +2,54 @@ body {
     padding: 0;
     margin: 0;
     background: white;
-    font-family: "Helvetica", sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 .main {
-    width: 400px;
+    width: 37%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
 }
 
 .header {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    height: 30px;
-    
-    text-align: justify;
-    -ms-text-justify: distribute-all-lines;
-    text-justify: distribute-all-lines;
+  width: 37%;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  margin-bottom: 0;
+}
+
+.header-photo {
+  width: 50%;
+  height: 100%;
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  width: 50%;
+  height: 100%;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.title > h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header-photo > img {
+  height: 150px;
+  float: right;
+}
+
+.text {
+  float: left;
+  margin-right: auto;
+  margin-left: 0;
 }
 
 a { 
@@ -29,30 +57,10 @@ a {
     text-decoration: none;
 }
 
-.header a {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    text-decoration: none;
-    color: #262626;
-}
-
-.header a:hover {
-    color: #0620ad;
-}
-
-.stretch {
-    width: 100%;
-    display: inline-block;
-    font-size: 0;
-    line-height: 0
-}
-
 .info {
     color: #0620ad;
-    width: 100%;
-    text-align: center;
-    position: absolute;
+    text-align: left;
+    margin-top: 10%
 }
 
 .info a {
@@ -62,25 +70,6 @@ a {
     display: inline;
 }
 
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
-    color: #0620ad;
-}
-@keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-webkit-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-moz-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
+a:hover {
+    color: #f7a800;
 }

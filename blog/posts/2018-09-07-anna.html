@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/bmp" href="../../assets/img/favicon.png">
+        <link rel="stylesheet" href="../../assets/css/style.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <title>Blog | Going Fast and Cheap: How We Made Anna Autoscale</title>
+    </head>
+
+    <body>
+        <div class="blog-header">
+            <div class="blog-title">
+              <h1> Going Fast and Cheap: How We Made Anna Autoscale </h1>
+              <div class="date">
+                <h2> 09/07/2018 </h2>
+              </div>
+            </div>
+        </div>
+
+        <div class="main">
+          <p><strong>Background</strong>: In an earlier blog post, we described a system called Anna, which used a shared-nothing, thread-per-core architecture to achieve lightning-fast speeds by avoiding all coordination mechanisms. Anna also used lattice composition to enable a rich variety of coordination-free consistency levels. The first version of Anna blew existing in-memory KVSes out of the water: Anna is up to 700x faster than Masstree, an earlier state-of-the-art research KVS, and up to 800x faster than Intel’s “lock-free” TBB hash table. You can find the previous blog post <a href="https://databeta.wordpress.com/2018/03/09/anna-kvs/">here</a> and the full paper <a href="http://db.cs.berkeley.edu/jmh/papers/anna_ieee18.pdf">here</a>. We refer to that version of Anna as “Anna v0.” In this post, we describe how we extended the fastest KVS in the cloud to be extremely cost-efficient and highly adaptive.</p>
+
+<p>Public cloud users today are flush with storage options. Amazon Web Services offers two object storage services (S3 and Glacier) and two file system services (EBS and EFS), in addition seven different database services, ranging from relational databases to NoSQL key-value stores. It’s a dizzying variety, and users are naturally left asking which service is the right choice for them. In many cases, the short (and not very encouraging) answer is “all of them at once.”</p>
+
+<p>Each one of these storage services provides a very narrow cost-performance tradeoff. For example, caching services like AWS ElastiCache are fast and expensive, and cold storage services like AWS Glacier are extremely slow and cheap. As a result, users face a catch-22: They must either compromise on cost by provisioning extremely large memory-speed clusters or compromise on performance by relegating all data to systems like DynamoDB or S3.</p>
+
+<p>To make matters more complicated, most real applications have skewed data access patterns. Frequently accessed data is “hot”, and other data is “cold”, but these individual services are only designed for either hot or cold data. Users who don’t want to compromise on performance or cost must cobble together memory hierarchies by hand and build applications that track data and requests across many services.</p>
+
+<p>Worse yet, performant cloud storage offerings (like ElastiCache) are inelastic: They require manual intervention to add &amp; remove resources from the cluster. This means that cloud developers design &amp; build bespoke solutions to monitor workload changes, modify resource allocation, and manually move data between storage engines.</p>
+
+<p>This is unequivocally bad. Applications developers with realistic storage needs are constantly forced to reinvent the wheel instead of reasoning about the metrics they care the most about: performance and cost. We’d like to change that.</p>
+
+<h3 id="annav1">Anna v1</h3>
+
+<p>Using Anna v0 as an in-memory storage engine, we set out to address the cloud storage problems described above. We aimed to evolve the fastest KVS in the cloud into the most adaptive, cost-effective one as well. We did this by adding 3 key mechanisms to Anna: Vertical Tiering, Horizontal Elasticity, and Selective Replication.</p>
+
+<p>The core component in Anna v1<sup>1</sup> is a monitoring system &amp; policy engine that together enable workload-responsiveness and adaptability. To meet user-defined goals for performance (request latency) and cost, the monitoring service tracks and adjusts resources to workload changes. Each storage server collects statistics about the requests it serves, the data it stores, etc. The monitoring system periodically scrapes and munges this data, and the policy engine uses these statistics to take action via one of three mechanisms listed above. The trigger for each action is simple:  </p>
+
+<ul>
+<li><em>Elasticity</em>: In order for a system to adapt to changing workloads, the system must be able to autoscale up and down to match the request volume it is seeing. When a tier is saturating compute or storage capacity, we add nodes to the cluster, and when resources are underutilized, they are deallocated to save cost.</li>
+
+<li><em>Selective Replication</em>: In real workloads, there is often a hot set of keys, which should be replicated beyond fault-tolerance requirements to improve performance. This increases the cores and network bandwidth available to serve common requests. Anna v0 enabled multi-master replication of keys, but had a fixed replication factor for all keys. As you can imagine, that was unreasonably expensive. In Anna v1, the monitoring engine picks the most accessed keys and increases the number of replicas of those keys specifically, without paying extra to replicate cold data.</li>
+
+<li><em>Promotion &amp; Demotion</em>: Just like traditional memory hierarchies, cloud storage systems should store hot data in a high-performance, memory-speed tier for efficient access, while cold data should reside in a slower tier to save cost. Our monitoring engine automatically moves data between tiers based on access patterns.</li>
+</ul>
+
+<p>In order to implement these mechanisms, we had to make two significant changes to the design of Anna. First, we deployed the storage engine across multiple storage media -- currently RAM and flash disk. Each of these resulting storage tiers represents a different cost-performance tradeoff, akin to a traditional memory hierarchy. We also implemented a routing service that sends user requests to the correct servers in the correct tiers. This gives users a single, uniform API regardless of where the data is stored. Each one of these tiers has the same rich consistency model inherited from the first version of Anna, so the developer can work off a single (widely parameterizable) consistency model.</p>
+
+<p>Our experiments show an impressive level of both performance and cost efficiency. Anna provides 8x the throughput of AWS ElastiCache’s and 355x the throughput of DynamoDB for a fixed price point. Anna is also able to react to workload changes by adding nodes and replicating data appropriately: </p>
+
+<img width="100%" maxwidth="500px" src="https://rise.cs.berkeley.edu/wp-content/uploads/2018/09/selective_elasticity.png" />
+
+<p>This blog post only provides a brief overview of the design of Anna. If you’re interested in learning more, you can find the full paper <a href="https://arxiv.org/pdf/1809.00089.pdf">here</a> and the code <a href="https://github.com/fluent-project/fluent/tree/master/kvs">here</a>. We’re pretty pleased with the improvements we’re seeing, and we’d love to get your feedback. We have some next steps brewing that we’re excited about as well, to take advantage of the performance and flexibility Anna provides for other tasks, so stay tuned! </p>
+
+<p><hr><sup>1</sup> Note that we previously referred to Anna v1 as Bedrock.</p>
+
+<p>This blog post is crossposted <a href="https://rise.cs.berkeley.edu/?p=2598&amp;preview=true">here</a> and was co-written with <a href="http://cgwu.io/">Chenggang Wu</a> and <a href="http://db.cs.berkeley.edu/jmh/">Joe Hellerstein</a>.</p>
+        </div>
+
+    </body>
+</html>
